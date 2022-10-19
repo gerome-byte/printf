@@ -8,7 +8,7 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int i;
+	unsigned int i = 0;
 	char *k;
 
 	unsigned int b = 0;
@@ -18,16 +18,19 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 
-	for (i = 0; i < strlen(format); i++)
+	while (i < strlen(format))
 	{
 		if (format[i] != '%')
+		{
 			putchar(format[i]);
+			i++;
+		}
 		else
 		{
 			if (format[i + 1] == 'c')
 			{
 				putchar(va_arg(ap, int));
-				i++;
+				i =+ 2;
 			}
 			else if (format[i + 1] == 's')
 			{
@@ -38,10 +41,13 @@ int _printf(const char *format, ...)
 					putchar(k[b]);
 					b++;
 				}
-				++i;
+				i =+ 2;
 			}
 			else
+			{
 				putchar(format[i]);
+				i++;
+			}
 		}
 	}
 	va_end(ap);
