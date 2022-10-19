@@ -47,17 +47,3 @@ int _printf(const char *format, ...)
 	va_end(ap);
 	return (i + b);
 }
-
-/**
- * main - runs print function
- * Return: 0
- */
-
-int main(void)
-{
-	char *s = "gabriel";
-	char c = 'C';
-
-	_printf("i am %d and i like %c\n", s, c);
-	return (0);
-}
